@@ -6,6 +6,8 @@ on:
 jobs:
   build-and-push:
     runs-on: ubuntu-20.04
+    permissions:
+      contents: read
     steps:
     - uses: actions/checkout@v2
     - uses: kciter/aws-ecr-action@v2
@@ -20,6 +22,8 @@ jobs:
   update-manifest:
     needs: build-and-push
     runs-on: ubuntu-20.04
+    permissions:
+      contents: write
     steps:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
